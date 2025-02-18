@@ -6,18 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>JavaScript html DOM</h2>
-    <p id="intro">Finding HTML Elements by ID</p>
-    <p>This example demonstrates the <b>getElementById </b> method</p>
-
+<h1>Javascript Functions</h1>
+<h2>Callback Functions</h2>
+<p>The result of the calculations is:</p>
     <p id="demo"></p>
 
     <script>
-        const element = 
-        document.getElementById("intro");
-
-        document.getElementById("demo").innerHTML = 
-        "The text from the intro paragraph is: " + element.innerHTML
+    function myDisplayer(something) {
+        document.getElementById("demo").innerHTML = something;
+    }
+    function myCalculator(num1, num2, myCallback){
+        let sum = num1 + num2;
+        myCallback(sum);
+    }
+    myCalculator(5, 5, myDisplayer);
     </script>
 </body>
 </html>
