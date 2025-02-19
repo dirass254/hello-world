@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body style="text-align: right;">
+<body>
     <h1>Javascript Functions</h1>
     <h2>Callback Functions</h2>
-    <p id="demo"></p>
+    <p id="dem"></p>
 
     <script>
         //create an array
@@ -17,7 +17,7 @@
         const posNumbers = 
         removeNeg(myNumbers, (x) => x >= 0);
         //display result
-        document.getElementById("demo").innerHTML = posNumbers;
+        document.getElementById("dem").innerHTML = posNumbers;
 
         //remove negative numbers
         function removeNeg(numbers, callback) {
@@ -30,5 +30,28 @@
             return myArray;
         }
     </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Javascript Functions</h1> 
+   <h2>setTimeout() with a callback</h2>
+   <p>Wait 3 secons (3000 milliseconds) for this page to change.</p>
+
+   <h1 id="demo"></h1>
+
+   <script>
+    setTimeout(myfunction, 3000);
+    function myfunction() {
+        document.getElementById("demo").innerHTML = "I love you!!"
+    }
+   </script>
 </body>
 </html>
