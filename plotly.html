@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="myPlot"
+    style="width: 50%; max-width: 700px;"></div>
+
+    <script>
+        const xArray = ["italy", "france", "spain", "germany", "usa", "Argentina"];
+        const yArray = [55, 49, 44, 24, 15];
+        const data = [{
+            labels: xArray,
+            values: yArray,
+            hole: .4,
+            type: "pie",
+            marker:{color:"rgba(0, 0, 255, 0.6)"}
+            
+        }];
+        const layout = {title: "World Wide Wine Production"};
+        Plotly.newPlot("myPlot", data, layout);
+
+
+    </script>
+</body>
+</html>
