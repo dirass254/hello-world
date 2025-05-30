@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Vertical Tabs</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .tabs-container {
+            display: flex;
+            max-width: 800px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        /* Tab navigation */
+        .tab-nav {
+            display: flex;
+            flex-direction: column;
+            background-color: #f1f1f1;
+            min-width: 150px;
+            border-right: 1px solid #ccc;
+        }
+        
+        .tab-button {
+            display: block;
+            background-color: transparent;
+            color: #333;
+            border: none;
+            text-align: left;
+            width: 100%;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-button:last-child {
+            border-bottom: none;
+        }
+        
+        .tab-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .tab-button:focus {
+            outline: 2px solid #007acc;
+            outline-offset: -2px;
+        }
+        
+        .tab-button.active {
+            background-color: #007acc;
+            color: white;
+        }
+        
+        .tab-button.active:hover {
+            background-color: #005a9e;
+        }
+        
+        /* Tab content */
+        .tab-content-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            min-height: 300px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        /* Close button */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+        
+        .close-button:hover {
+            color: #ff4444;
+        }
+        
+        .close-button:focus {
+            outline: 2px solid #007acc;
+            outline-offset: 2px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .tabs-container {
+                flex-direction: column;
+            }
+            
+            .tab-nav {
+                flex-direction: row;
+                min-width: auto;
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+            }
+            
+            .tab-button {
+                border-bottom: none;
+                border-right: 1px solid #ddd;
+                flex: 1;
+                text-align: center;
+            }
+            
+            .tab-button:last-child {
+                border-right: none;
+            }
+        }
+        
+        /* Hidden content for screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Improved Vertical Tabs</h1>
+    <p>Navigate using mouse, keyboard (Tab/Enter/Arrow keys), or touch:</p>
+    
+    <div class="tabs-container" role="tablist" aria-label="City information tabs">
+        <nav class="tab-nav">
+            <button 
+                class="tab-button active" 
+                role="tab" 
+                aria-selected="true" 
+                aria-controls="london-panel" 
+                id="london-tab"
+                data-target="london">
+                London
+            </button>
+            <button 
+                class="tab-button" 
+                role="tab" 
+                aria-selected="false" 
+                aria-controls="paris-panel" 
+                id="paris-tab"
+                data-target="paris">
+                Paris
+            </button>
+            <button 
+                class="tab-button" 
+                role="tab" 
+                aria-selected="false" 
+                aria-controls="tokyo-panel" 
+                id="tokyo-tab"
+                data-target="tokyo">
+                Tokyo
+            </button>
+        </nav>
+        
+        <div class="tab-content-container">
+            <button class="close-button" aria-label="Close tab content" title="Close">&times;</button>
+            
+            <div 
+                id="london-panel" 
+                class="tab-content active" 
+                role="tabpanel" 
+                aria-labelledby="london-tab">
+                <h2>London</h2>
+                <p>London is the capital city of England and the United Kingdom. With a population of over 8 million, it's one of the most diverse and vibrant cities in the world.</p>
+                <p>Famous landmarks include Big Ben, the Tower of London, and Buckingham Palace.</p>
+            </div>
+            
+            <div 
+                id="paris-panel" 
+                class="tab-content" 
+                role="tabpanel" 
+                aria-labelledby="paris-tab">
+                <h2>Paris</h2>
+                <p>Paris is the capital city of France, known as the "City of Light" and famous for its art, fashion, gastronomy, and culture.</p>
+                <p>Iconic attractions include the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral.</p>
+            </div>
+            
+            <div 
+                id="tokyo-panel" 
+                class="tab-content" 
+                role="tabpanel" 
+                aria-labelledby="tokyo-tab">
+                <h2>Tokyo</h2>
+                <p>Tokyo is the capital city of Japan and one of the world's most populous metropolitan areas. It's a fascinating blend of traditional and ultra-modern culture.</p>
+                <p>Must-see places include the Imperial Palace, Senso-ji Temple, and the bustling Shibuya crossing.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class VerticalTabs {
+            constructor(container) {
+                this.container = container;
+                this.tabButtons = container.querySelectorAll('.tab-button');
+                this.tabPanels = container.querySelectorAll('.tab-content');
+                this.closeButton = container.querySelector('.close-button');
+                
+                this.init();
+            }
+            
+            init() {
+                // Add event listeners using event delegation
+                this.container.addEventListener('click', this.handleClick.bind(this));
+                this.container.addEventListener('keydown', this.handleKeydown.bind(this));
+                
+                // Close button functionality
+                if (this.closeButton) {
+                    this.closeButton.addEventListener('click', this.closeAllTabs.bind(this));
+                }
+            }
+            
+            handleClick(event) {
+                const tabButton = event.target.closest('.tab-button');
+                if (tabButton) {
+                    event.preventDefault();
+                    this.switchTab(tabButton);
+                }
+            }
+            
+            handleKeydown(event) {
+                const tabButton = event.target.closest('.tab-button');
+                if (!tabButton) return;
+                
+                const currentIndex = Array.from(this.tabButtons).indexOf(tabButton);
+                let targetIndex;
+                
+                switch (event.key) {
+                    case 'ArrowUp':
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        targetIndex = currentIndex > 0 ? currentIndex - 1 : this.tabButtons.length - 1;
+                        this.focusTab(targetIndex);
+                        break;
+                        
+                    case 'ArrowDown':
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        targetIndex = currentIndex < this.tabButtons.length - 1 ? currentIndex + 1 : 0;
+                        this.focusTab(targetIndex);
+                        break;
+                        
+                    case 'Home':
+                        event.preventDefault();
+                        this.focusTab(0);
+                        break;
+                        
+                    case 'End':
+                        event.preventDefault();
+                        this.focusTab(this.tabButtons.length - 1);
+                        break;
+                        
+                    case 'Enter':
+                    case ' ':
+                        event.preventDefault();
+                        this.switchTab(tabButton);
+                        break;
+                }
+            }
+            
+            switchTab(activeButton) {
+                const targetId = activeButton.dataset.target;
+                const targetPanel = this.container.querySelector(`#${targetId}-panel`);
+                
+                if (!targetPanel) return;
+                
+                // Update button states
+                this.tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                    button.setAttribute('aria-selected', 'false');
+                    button.setAttribute('tabindex', '-1');
+                });
+                
+                activeButton.classList.add('active');
+                activeButton.setAttribute('aria-selected', 'true');
+                activeButton.setAttribute('tabindex', '0');
+                
+                // Update panel states
+                this.tabPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                
+                targetPanel.classList.add('active');
+                
+                // Announce change to screen readers
+                this.announceTabChange(activeButton.textContent);
+            }
+            
+            focusTab(index) {
+                this.tabButtons[index].focus();
+            }
+            
+            closeAllTabs() {
+                this.tabPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+                
+                this.tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                    button.setAttribute('aria-selected', 'false');
+                });
+                
+                this.announceTabChange('All tabs closed');
+            }
+            
+            announceTabChange(message) {
+                // Create a live region announcement for screen readers
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.textContent = `${message} tab selected`;
+                
+                document.body.appendChild(announcement);
+                
+                // Remove after announcement
+                setTimeout(() => {
+                    document.body.removeChild(announcement);
+                }, 1000);
+            }
+        }
+        
+        // Initialize tabs when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabsContainer = document.querySelector('.tabs-container');
+            if (tabsContainer) {
+                new VerticalTabs(tabsContainer);
+            }
+        });
+    </script>
+</body>
+</html>
